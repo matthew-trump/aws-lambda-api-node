@@ -39,13 +39,16 @@ exports.saveQuestionResponse = (event, context, callback) => {
     var sessionId;
     var questionId;
     var wasCorrect;
-    if (event['body']){
-        console.log("EVENT BODY >>");
-        console.log(event['body']);
-        userId       = event['body']['userId'] ? event['body']['userId'] : "NO-PARAM";
-        sessionId    = event['body']['sessionId'] ? event['body']['sessionId'] : "NO-PARAM";;
-        questionId   = event['body']['questionId'] ? event['body']['questionId'] : "NO-PARAM";;
-        wasCorrect   = event['body']['wasCorrect'] ? event['body']['wasCorrect'] : "NO-PARAM";;
+    var body = JSON.parse(event['body']);
+    console.log("EVENT BODY >>");
+    console.log(body);
+    if (body){
+        
+       
+        userId       = body['userId']     ? body['userId'] : "NO-PARAM";
+        sessionId    = body['sessionId']  ? body['sessionId'] : "NO-PARAM";;
+        questionId   = body['questionId'] ? body['questionId'] : "NO-PARAM";;
+        wasCorrect   = body['wasCorrect'] ? body['wasCorrect'] : "NO-PARAM";;
     }else{
        userId       = "NO-BODY";
        sessionId    = "NO-BODY";
