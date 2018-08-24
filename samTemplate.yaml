@@ -8,6 +8,7 @@ Resources:
       Handler: index.getQuizScore
       Runtime: nodejs6.10
       CodeUri: ./
+      Policies: AmazonDynamoDBReadOnlyAccess
       Events:
         GetQuizScore:
           Type: Api
@@ -20,6 +21,7 @@ Resources:
       Handler: index.saveQuestionResponse
       Runtime: nodejs6.10
       CodeUri: ./
+      Policies: AmazonDynamoDBFullAccess
       Events:
         SaveQuestionResponse:
           Type: Api
@@ -32,9 +34,22 @@ Resources:
       Handler: index.startNewQuiz
       Runtime: nodejs6.10
       CodeUri: ./
+      Policies: AmazonDynamoDBFullAccess
       Events:
         StartNewQuiz:
           Type: Api
           Properties:
             Path: /StartNewQuiz
             Method: POST
+   HQUBackendDBTable:
+     Type: AWS::DynamoDB::Table
+     Properties: 
+       AttributeDefinitions: 
+         - AttributeName: id
+           AttributeType: S
+       KeySchema: 
+         - AttributeName: id
+           KeyType: HASH
+       ProvisionedThroughput: 
+         ReadCapacityUnits: 5
+         WriteCapacityUnits: 5
