@@ -25,4 +25,4 @@ Resources:
           Type: Api
           Properties:
             Path: /SaveQuestionResponse
-            Method: GET
+            Method: POST
