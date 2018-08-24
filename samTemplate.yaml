@@ -26,3 +26,15 @@ Resources:
           Properties:
             Path: /SaveQuestionResponse
             Method: POST
+  StartNewQuizFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.startNewQuiz
+      Runtime: nodejs6.10
+      CodeUri: ./
+      Events:
+        StartNewQuiz:
+          Type: Api
+          Properties:
+            Path: /StartNewQuiz
+            Method: POST
