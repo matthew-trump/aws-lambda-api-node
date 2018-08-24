@@ -13,7 +13,7 @@ exports.getQuizScore = (event, context, callback) => {
     currentTime.setTimezone("America/Los_Angeles");
     callback(null, {
         statusCode: '200',
-        body: 'Your score on the quiz (user='+userId+',sessionId='+sessionId=') was ' + numberCorrect + ' out of ' + numberTotal,
+        body: 'Your score on the quiz (user='+userId+',sessionId='+sessionId+') was ' + numberCorrect + ' out of ' + numberTotal,
     });
 };
 exports.startNewQuiz = (event, context, callback) => {
