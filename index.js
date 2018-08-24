@@ -22,13 +22,23 @@ exports.startNewQuiz = (event, context, callback) => {
     
     var userId;
     var sessionId;
-    if (event.body){
-        userId       = event.body.userId;
-        sessionId    = event.body.sessionId;
+   
+    var body = JSON.parse(event['body']);
+    if (body){
+        
+       
+        userId       = body['userId']     ? body['userId'] : "NO-PARAM";
+        sessionId    = body['sessionId']  ? body['sessionId'] : "NO-PARAM";;
+      
+    }else{
+       userId       = "NO-BODY";
+       sessionId    = "NO-BODY";
+     
+        
     }
     callback(null, {
         statusCode: '200',
-        body: 'New quiz at '+currentTime + ' (userId='+userId+',sessionId='+sessionId+',questionId='+questionId+',wasCorrect='+wasCorrect+')',
+        body: 'New quiz at '+currentTime + ' (userId='+userId+',sessionId='+sessionId+')',
     });
 };
 exports.saveQuestionResponse = (event, context, callback) => {
