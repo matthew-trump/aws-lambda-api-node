@@ -9,18 +9,29 @@ exports.getQuizScore = (event, context, callback) => {
     var pathParameters  = event['pathParameters'] ? "OK" : "NONE";
     var qsParameters    = event["queryStringParameters"] ? "OK" : "NONE";
     var userId          = event["queryStringParameters"] ?  (event["queryStringParameters"]["userId"] ? event["queryStringParameters"]["userId"] : "NONE" ) : "NO-QS";
-    
+    var sessionId       = event["queryStringParameters"] ?  (event["queryStringParameters"]["sessionId"] ? event["queryStringParameters"]["sessionId"] : "NONE" ) : "NO-QS";
     currentTime.setTimezone("America/Los_Angeles");
     callback(null, {
         statusCode: '200',
-        body: 'Your score on the quiz (user='+userId+') was ' + numberCorrect + ' out of ' + numberTotal,
+        body: 'Your score on the quiz (user='+userId+',sessionId='+sessionId=') was ' + numberCorrect + ' out of ' + numberTotal,
     });
 };
 exports.saveQuestionResponse = (event, context, callback) => {
     var currentTime = new time.Date(); 
     currentTime.setTimezone("America/Phoenix");
+    
+    var userId;
+    var sessionId;
+    var questionId;
+    var wasCorrect;
+    if (event.body){
+        userId       = event.body.userId;
+        sessionId    = event.body.sessionId;
+        questionId   = event.body.questionId;
+        wasCorrect   = event.body.wasCorrect;
+    }
     callback(null, {
         statusCode: '200',
-        body: 'Question response saved',
+        body: 'Question response saved at '+currentTime + ' (userId='+userId+',sessionId='+sessionId+',questionId='+questionId+',wasCorrect='+wasCorrect+')',
     });
 };
