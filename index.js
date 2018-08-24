@@ -39,11 +39,17 @@ exports.saveQuestionResponse = (event, context, callback) => {
     var sessionId;
     var questionId;
     var wasCorrect;
-    if (event.body){
-        userId       = event.body.userId;
-        sessionId    = event.body.sessionId;
-        questionId   = event.body.questionId;
-        wasCorrect   = event.body.wasCorrect;
+    if (event['body']){
+        userId       = event['body']['userId'];
+        sessionId    = event['body']['sessionId'];
+        questionId   = event['body']['questionId'];
+        wasCorrect   = event['body']['wasCorrect'];;
+    }else{
+       userId       = "NO-BODY";
+       sessionId    = "NO-BODY";
+       questionId   = "NO-BODY";
+       wasCorrect   = "NO-BODY";
+        
     }
     callback(null, {
         statusCode: '200',
