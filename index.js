@@ -40,10 +40,10 @@ exports.saveQuestionResponse = (event, context, callback) => {
     var questionId;
     var wasCorrect;
     if (event['body']){
-        userId       = event['body']['userId'];
-        sessionId    = event['body']['sessionId'];
-        questionId   = event['body']['questionId'];
-        wasCorrect   = event['body']['wasCorrect'];;
+        userId       = event['body']['userId'] ? event['body']['userId'] : "NO-PARAM";
+        sessionId    = event['body']['sessionId'] ? event['body']['sessionId'] : "NO-PARAM";;
+        questionId   = event['body']['questionId'] ? event['body']['questionId'] : "NO-PARAM";;
+        wasCorrect   = event['body']['wasCorrect'] ? event['body']['wasCorrect'] : "NO-PARAM";;
     }else{
        userId       = "NO-BODY";
        sessionId    = "NO-BODY";
