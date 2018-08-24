@@ -1,1 +1,28 @@
-
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Functions for the HQU Backend
+Resources:
+  GetQuizScoreFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.getQuizScore
+      Runtime: nodejs6.10
+      CodeUri: ./
+      Events:
+        GetQuizScore:
+          Type: Api
+          Properties:
+            Path: /GetQuizScore
+            Method: GET
+  SaveQuestionResponseFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.saveQuestionResponse
+      Runtime: nodejs6.10
+      CodeUri: ./
+      Events:
+        SaveQuestionResponse:
+          Type: Api
+          Properties:
+            Path: /SaveQuestionResponse
+            Method: GET
