@@ -41,9 +41,9 @@ Resources:
           Properties:
             Path: /StartNewQuiz
             Method: POST
-   HQUBackendDBTable:
-     Type: AWS::DynamoDB::Table
-     Properties: 
+  HQUBackendDBTable:
+    Type: AWS::DynamoDB::Table
+    Properties: 
        AttributeDefinitions: 
          - AttributeName: id
            AttributeType: S
