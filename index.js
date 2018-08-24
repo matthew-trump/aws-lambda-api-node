@@ -16,6 +16,21 @@ exports.getQuizScore = (event, context, callback) => {
         body: 'Your score on the quiz (user='+userId+',sessionId='+sessionId=') was ' + numberCorrect + ' out of ' + numberTotal,
     });
 };
+exports.startNewQuiz = (event, context, callback) => {
+    var currentTime = new time.Date(); 
+    currentTime.setTimezone("America/Phoenix");
+    
+    var userId;
+    var sessionId;
+    if (event.body){
+        userId       = event.body.userId;
+        sessionId    = event.body.sessionId;
+    }
+    callback(null, {
+        statusCode: '200',
+        body: 'New quiz at '+currentTime + ' (userId='+userId+',sessionId='+sessionId+',questionId='+questionId+',wasCorrect='+wasCorrect+')',
+    });
+};
 exports.saveQuestionResponse = (event, context, callback) => {
     var currentTime = new time.Date(); 
     currentTime.setTimezone("America/Phoenix");
