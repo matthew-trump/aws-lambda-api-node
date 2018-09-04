@@ -2,6 +2,39 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Functions for the HQU Backend
 Resources:
+  Ping:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.ping
+      Runtime: nodejs6.10
+      CodeUri: ./
+      Events:
+        Ping:
+          Type: Api
+          Properties:
+            Path: /Ping
+            Method: GET
+  TestDbConnection:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.testDbConnection
+      Runtime: nodejs6.10
+      CodeUri: ./
+      Policies: 
+        - AmazonDynamoDBReadOnlyAccess
+        - AWSLambdaVPCAccessExecutionRole
+      VpcConfig:
+        SecurityGroupIds: 
+          - sg-0395d4adc066d028a
+        SubnetIds:
+          - subnet-0b349846d3b1a0a0f
+          - subnet-0e6afde2cb6edef83
+      Events:
+        TestDbConnection:
+          Type: Api
+          Properties:
+            Path: /TestDbConnection
+            Method: GET
   GetQuizScoreFunction:
     Type: AWS::Serverless::Function
     Properties:
