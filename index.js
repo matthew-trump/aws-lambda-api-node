@@ -2,9 +2,9 @@
 var time  = require('time');
 var mysql = require('mysql');
 var connection = mysql.createConnection({
-    host : "hqtriviaappcluster.cluster-cyiz2ptceqng.us-west-2.rds.amazonaws.com",
+    host : "hqutest.cyiz2ptceqng.us-west-2.rds.amazonaws.com",
     user : "master",
-    password : "ghW8CtiwXp",
+    password : "rutabega",
     port : 3306
 });
 
