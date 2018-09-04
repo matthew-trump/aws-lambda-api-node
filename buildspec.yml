@@ -3,6 +3,7 @@ phases:
   install:
     commands:
       - npm install time
+      - npm install mysql
       - pwd
       - ls
       - aws cloudformation package --template-file samTemplate.yaml --s3-bucket brigade-hqu-alpha-2 --output-template-file outputSamTemplate.yaml
