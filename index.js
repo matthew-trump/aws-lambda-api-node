@@ -1,5 +1,6 @@
 
 var time = require('time');
+var mysql = require('mysql');
 
 exports.getQuizScore = (event, context, callback) => {
     var currentTime = new time.Date(); 
