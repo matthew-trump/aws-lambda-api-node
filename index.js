@@ -1,6 +1,13 @@
 
 var time  = require('time');
 var mysql = require('mysql');
+var connection = mysql.createConnection({
+    host : "hqtriviaappcluster.cluster-cyiz2ptceqng.us-west-2.rds.amazonaws.com",
+    user : "master",
+    password : "ghW8CtiwXp",
+    port : 3306
+});
+
 
 exports.getQuizScore = (event, context, callback) => {
     var currentTime = new time.Date(); 
@@ -12,10 +19,27 @@ exports.getQuizScore = (event, context, callback) => {
     var userId          = event["queryStringParameters"] ?  (event["queryStringParameters"]["userId"] ? event["queryStringParameters"]["userId"] : "NONE" ) : "NO-QS";
     var sessionId       = event["queryStringParameters"] ?  (event["queryStringParameters"]["sessionId"] ? event["queryStringParameters"]["sessionId"] : "NONE" ) : "NO-QS";
     currentTime.setTimezone("America/Los_Angeles");
-    callback(null, {
-        statusCode: '200',
-        body: 'Your score on the quiz (user='+userId+',sessionId='+sessionId+') was ' + numberCorrect + ' out of ' + numberTotal,
+    
+    connection.connect(function(err) {
+        if (err) {
+            callback(null, {
+                 statusCode: '200',
+                 body: "ERROR: "+err.stack,
+            });
+            console.error('Database connection failed: ' + err.stack);
+        }else{
+            callback(null, {
+                 statusCode: '200',
+                 body: 'CONNECTED: Your score on the quiz (user='+userId+',sessionId='+sessionId+') was ' + numberCorrect + ' out of ' + numberTotal,
+            });
+        }
+
+        console.log('Connected to database.');
     });
+
+    connection.end();
+    
+    
 };
 exports.startNewQuiz = (event, context, callback) => {
     var currentTime = new time.Date(); 
