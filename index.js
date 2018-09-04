@@ -8,8 +8,7 @@ var connection = mysql.createConnection({
     port : 3306
 });
 
-
-exports.getQuizScore = (event, context, callback) => {
+exports.ping = (event, context, callback) => {
     var currentTime = new time.Date(); 
     var numberCorrect   = 9;
     var numberTotal     = 10;
@@ -20,6 +19,26 @@ exports.getQuizScore = (event, context, callback) => {
     var sessionId       = event["queryStringParameters"] ?  (event["queryStringParameters"]["sessionId"] ? event["queryStringParameters"]["sessionId"] : "NONE" ) : "NO-QS";
     currentTime.setTimezone("America/Los_Angeles");
     
+    console.log('Lambda ping called.');
+            callback(null, {
+                 statusCode: '200',
+                 body: 'Current time in Los Angeles is '+currentTime,
+            });
+    console.log('Lambda ping done.');
+}
+
+exports.testDbConnection = (event, context, callback) => {
+    var currentTime = new time.Date(); 
+    var numberCorrect   = 9;
+    var numberTotal     = 10;
+    
+    var pathParameters  = event['pathParameters'] ? "OK" : "NONE";
+    var qsParameters    = event["queryStringParameters"] ? "OK" : "NONE";
+    var userId          = event["queryStringParameters"] ?  (event["queryStringParameters"]["userId"] ? event["queryStringParameters"]["userId"] : "NONE" ) : "NO-QS";
+    var sessionId       = event["queryStringParameters"] ?  (event["queryStringParameters"]["sessionId"] ? event["queryStringParameters"]["sessionId"] : "NONE" ) : "NO-QS";
+    currentTime.setTimezone("America/Los_Angeles");
+    
+    console.log('Connecting to database...');
     connection.connect(function(err) {
         if (err) {
             callback(null, {
@@ -35,6 +54,27 @@ exports.getQuizScore = (event, context, callback) => {
         }
 
         console.log('Connected to database.');
+    });  
+    console.log('Done.');
+}
+
+exports.getQuizScore = (event, context, callback) => {
+    var currentTime = new time.Date(); 
+    var numberCorrect   = 9;
+    var numberTotal     = 10;
+    
+    var pathParameters  = event['pathParameters'] ? "OK" : "NONE";
+    var qsParameters    = event["queryStringParameters"] ? "OK" : "NONE";
+    var userId          = event["queryStringParameters"] ?  (event["queryStringParameters"]["userId"] ? event["queryStringParameters"]["userId"] : "NONE" ) : "NO-QS";
+    var sessionId       = event["queryStringParameters"] ?  (event["queryStringParameters"]["sessionId"] ? event["queryStringParameters"]["sessionId"] : "NONE" ) : "NO-QS";
+    currentTime.setTimezone("America/Los_Angeles");
+    
+
+            callback(null, {
+                 statusCode: '200',
+                 body: 'CONNECTED: Your score on the quiz (user='+userId+',sessionId='+sessionId+') was ' + numberCorrect + ' out of ' + numberTotal,
+            });
+   
     });
 
     connection.end();
