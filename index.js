@@ -75,7 +75,7 @@ exports.getQuizScore = (event, context, callback) => {
                  body: 'CONNECTED: Your score on the quiz (user='+userId+',sessionId='+sessionId+') was ' + numberCorrect + ' out of ' + numberTotal,
             });
    
-    });
+
 
     connection.end();
     
