@@ -45,8 +45,9 @@ exports.testDbConnection = (event, context, callback) => {
         if (err) {
            
             
-            console.error('Database connection failed: ' + err.stack);
+           throw err;
         }
+        context.succeed("done");
         console.log('Connected to database.');
     });  
     connection.end();
