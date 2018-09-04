@@ -5,7 +5,8 @@ var connection = mysql.createConnection({
     host : "hqutest.cyiz2ptceqng.us-west-2.rds.amazonaws.com",
     user : "master",
     password : "rutabega",
-    port : 3306
+    port : 3306,
+    database: "user_quizes"
 });
 
 exports.ping = (event, context, callback) => {
@@ -42,22 +43,17 @@ exports.testDbConnection = (event, context, callback) => {
     connection.connect(function(err) {
         console.log('In connection function...');
         if (err) {
-            console.log('Err: '+err.stack);
-            callback(null, {
-                 statusCode: '200',
-                 body: "ERROR: "+err.stack,
-            });
+           
+            
             console.error('Database connection failed: ' + err.stack);
-        }else{
-            console.log('Connected');
-            callback(null, {
-                 statusCode: '200',
-                 body: 'CONNECTED: Your score on the quiz (user='+userId+',sessionId='+sessionId+') was ' + numberCorrect + ' out of ' + numberTotal,
-            });
         }
-
         console.log('Connected to database.');
     });  
+    connection.end();
+    callback(null, {
+                 statusCode: '200',
+                 body: 'Your score on the quiz (user='+userId+',sessionId='+sessionId+') was ' + numberCorrect + ' out of ' + numberTotal,
+            });
     console.log('Done.');
 }
 
