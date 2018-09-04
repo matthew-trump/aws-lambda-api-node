@@ -1,5 +1,5 @@
 
-var time = require('time');
+var time  = require('time');
 var mysql = require('mysql');
 
 exports.getQuizScore = (event, context, callback) => {
