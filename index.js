@@ -19,7 +19,7 @@ exports.ping = (event, context, callback) => {
     var userId          = event["queryStringParameters"] ?  (event["queryStringParameters"]["userId"] ? event["queryStringParameters"]["userId"] : "NONE" ) : "NO-QS";
     var sessionId       = event["queryStringParameters"] ?  (event["queryStringParameters"]["sessionId"] ? event["queryStringParameters"]["sessionId"] : "NONE" ) : "NO-QS";
     currentTime.setTimezone("America/Los_Angeles");
-    
+    context.callbackWaitsForEmptyEventLoop = false;
     console.log('Lambda ping called.');
             callback(null, {
                  statusCode: '200',
