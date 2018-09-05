@@ -50,11 +50,11 @@ exports.testDbConnection = (event, context, callback) => {
         context.succeed("done");
         console.log('Connected to database.');
     });  
-    connection.end();
-    callback(null, {
+    connection.end(callback(null, {
                  statusCode: '200',
                  body: 'Your score on the quiz (user='+userId+',sessionId='+sessionId+') was ' + numberCorrect + ' out of ' + numberTotal,
-            });
+            }));
+    ;
     console.log('Done.');
 }
 
