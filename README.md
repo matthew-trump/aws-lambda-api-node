@@ -1,6 +1,6 @@
 # hq-lambda-api-node
 
-This is node.js implementation of the AWS Lambda and API Gateway backend of the HQ Trivia Assistant app. It was used in early testing of setting up the stack and accessing the database. It is no longer used and was superceded by the Python version at **hq-lambda-api-python**.  Unlike the Python version, it is *not* designed to used with the CloudFormation project pipeline.yaml in **hq-cloudformation-templates** (although in principle it could be).
+This is a node.js implementation of the AWS Lambda and API Gateway backend of the HQ Trivia Assistant app. It was used in early testing of setting up the stack and accessing the database. It is no longer used and was superceded by the Python version at **hq-lambda-api-python**.  Unlike the Python version, it is *not* designed to used with the CloudFormation project pipeline.yaml in **hq-cloudformation-templates** (although in principle it could be).
 
 ## Usage of API
 
