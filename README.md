@@ -1,6 +1,6 @@
-# hq-lambda-api-node
+# AWS lambda-api-node
 
-This is a node.js implementation of the AWS Lambda and API Gateway backend of the HQ Trivia Assistant app. It was used in early testing of setting up the stack and accessing the database. It is no longer used and was superceded by the Python version at **hq-lambda-api-python**.  Unlike the Python version, it is *not* designed to used with the CloudFormation project pipeline.yaml in **hq-cloudformation-templates** (although in principle it could be).
+This is a node.js implementation of the AWS Lambda and API Gateway backend of a commercial trivia app. It was used in early testing of setting up the stack and accessing the database. It is no longer used and was superceded by the Python version at **aws-lambda-api-python** (both of which were not used in production, as we went with Google Cloud Platform instead).  Unlike the Python version, it is *not* designed to used with the CloudFormation project pipeline.yaml in **aws-cloudformation-quizzes-example** (although in principle it could be).
 
 ## Usage of API
 
@@ -35,7 +35,7 @@ This is an application for AWS, specifically using AWS CodePipeline, CodeBuild, 
 1. On AWS, start a new CodePipeline project.
 2. Follow the flow to set up a Source.
 3. For the Source Provider, select Github.
-4. Use the interface button to connect to Github. Once connected, select this repository, i.e. https://github.com/thebrigade/hqu-backend. (you will need a Github account with at least Read access to the repository for this step).
+4. Use the interface button to connect to Github. Once connected, select this repository. (you will need a Github account with at least Read access to the repository for this step).
 5. For the Branch, select master.
 5. Make sure the OutputArtifact #1 is MyApp
 6. Go to the next step to start a Build.
